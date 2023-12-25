@@ -76,7 +76,7 @@
             this.metroPanel1.Location = new System.Drawing.Point(20, 60);
             this.metroPanel1.Name = "metroPanel1";
             this.metroPanel1.Padding = new System.Windows.Forms.Padding(16);
-            this.metroPanel1.Size = new System.Drawing.Size(920, 720);
+            this.metroPanel1.Size = new System.Drawing.Size(920, 570);
             this.metroPanel1.TabIndex = 0;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -85,7 +85,7 @@
             // btnPrint
             // 
             this.btnPrint.Enabled = false;
-            this.btnPrint.Location = new System.Drawing.Point(598, 156);
+            this.btnPrint.Location = new System.Drawing.Point(598, 101);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(307, 140);
             this.btnPrint.TabIndex = 13;
@@ -104,7 +104,7 @@
             this.metroPanel6.HorizontalScrollbarBarColor = true;
             this.metroPanel6.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel6.HorizontalScrollbarSize = 10;
-            this.metroPanel6.Location = new System.Drawing.Point(362, 156);
+            this.metroPanel6.Location = new System.Drawing.Point(362, 101);
             this.metroPanel6.Name = "metroPanel6";
             this.metroPanel6.Padding = new System.Windows.Forms.Padding(8);
             this.metroPanel6.Size = new System.Drawing.Size(230, 140);
@@ -198,9 +198,9 @@
             this.panelUsbBrowser.HorizontalScrollbarBarColor = true;
             this.panelUsbBrowser.HorizontalScrollbarHighlightOnWheel = false;
             this.panelUsbBrowser.HorizontalScrollbarSize = 10;
-            this.panelUsbBrowser.Location = new System.Drawing.Point(7, 311);
+            this.panelUsbBrowser.Location = new System.Drawing.Point(7, 256);
             this.panelUsbBrowser.Name = "panelUsbBrowser";
-            this.panelUsbBrowser.Size = new System.Drawing.Size(898, 397);
+            this.panelUsbBrowser.Size = new System.Drawing.Size(898, 304);
             this.panelUsbBrowser.TabIndex = 11;
             this.panelUsbBrowser.VerticalScrollbarBarColor = true;
             this.panelUsbBrowser.VerticalScrollbarHighlightOnWheel = false;
@@ -217,7 +217,7 @@
             this.panelFileSelection.HorizontalScrollbarSize = 10;
             this.panelFileSelection.Location = new System.Drawing.Point(7, 85);
             this.panelFileSelection.Name = "panelFileSelection";
-            this.panelFileSelection.Size = new System.Drawing.Size(886, 307);
+            this.panelFileSelection.Size = new System.Drawing.Size(886, 214);
             this.panelFileSelection.TabIndex = 15;
             this.panelFileSelection.VerticalScrollbarBarColor = true;
             this.panelFileSelection.VerticalScrollbarHighlightOnWheel = false;
@@ -228,10 +228,10 @@
             this.lvPrintableFiles.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lvPrintableFiles.FullRowSelect = true;
             this.lvPrintableFiles.GridLines = true;
-            this.lvPrintableFiles.Location = new System.Drawing.Point(3, 34);
+            this.lvPrintableFiles.Location = new System.Drawing.Point(3, 31);
             this.lvPrintableFiles.Name = "lvPrintableFiles";
             this.lvPrintableFiles.OwnerDraw = true;
-            this.lvPrintableFiles.Size = new System.Drawing.Size(880, 270);
+            this.lvPrintableFiles.Size = new System.Drawing.Size(880, 180);
             this.lvPrintableFiles.TabIndex = 13;
             this.lvPrintableFiles.UseCompatibleStateImageBehavior = false;
             this.lvPrintableFiles.UseSelectable = true;
@@ -300,7 +300,7 @@
             this.metroPanel4.HorizontalScrollbarBarColor = true;
             this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel4.HorizontalScrollbarSize = 10;
-            this.metroPanel4.Location = new System.Drawing.Point(7, 156);
+            this.metroPanel4.Location = new System.Drawing.Point(7, 101);
             this.metroPanel4.Name = "metroPanel4";
             this.metroPanel4.Padding = new System.Windows.Forms.Padding(8);
             this.metroPanel4.Size = new System.Drawing.Size(347, 140);
@@ -354,7 +354,7 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(7, 19);
+            this.metroPanel2.Location = new System.Drawing.Point(7, 14);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(318, 73);
             this.metroPanel2.TabIndex = 7;
@@ -395,7 +395,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 800);
+            this.ClientSize = new System.Drawing.Size(960, 650);
             this.ControlBox = false;
             this.Controls.Add(this.metroPanel1);
             this.Movable = false;
