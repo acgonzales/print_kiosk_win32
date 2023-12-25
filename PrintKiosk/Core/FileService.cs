@@ -12,11 +12,12 @@ namespace PrintKiosk.Core
         private static string[] HiddenDrives = new string[] { "C:" };
         private static string[] AcceptedExtensions = new string[] { ".pdf" };
 
-        public static List<DriveInfo> GetAvailableDrives()
+        public static List<ExternalDriveInfo> GetAvailableDrives()
         {
-            return DriveInfo.GetDrives().Where(x => 
-                (x.DriveType == DriveType.Removable || x.DriveType == DriveType.Fixed)  && !x.RootDirectory.FullName.StartsWith("C:")
-            ).ToList();
+            return DriveInfo.GetDrives()
+                .Where(x => (x.DriveType == DriveType.Removable || x.DriveType == DriveType.Fixed)  && !x.RootDirectory.FullName.StartsWith("C:"))
+                .Select(x => new ExternalDriveInfo(x))
+                .ToList();
         }
 
         public static List<string> ListPrintableFiles(string path)

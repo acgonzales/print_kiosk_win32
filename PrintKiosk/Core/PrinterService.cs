@@ -13,12 +13,12 @@ namespace PrintKiosk.Core
         private static string SamplePdfFilename = @"C:\Users\Chazz\Downloads\blank.pdf";
         private static string PrinterName = "Canon G1020 series HTTP";
 
-        public bool PrintSamplePdf(int copies, string paperName = "A4")
+        public static bool PrintSamplePdf(int copies, string paperName = "A4")
         {
             return PrintPdf(SamplePdfFilename, copies, paperName);
         }
 
-        public bool PrintPdf(string pdfPath, int copies, string paperName = "A4") {
+        public static bool PrintPdf(string pdfPath, int copies, string paperName = "A4") {
             try
             {
                 var printerSettings = new PrinterSettings

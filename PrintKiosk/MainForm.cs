@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
@@ -16,32 +17,27 @@ using System.Windows.Forms;
 
 namespace PrintKiosk
 {
-    public partial class Form1 : MetroFramework.Forms.MetroForm
+    public partial class MainForm : MetroFramework.Forms.MetroForm
     {
-        private static int MaximumAllowedCopies = 10;
-
-        private PrinterService printerService;
-
         private FileSource? selectedFileSource;
 
         private int NumberOfCopies = 1;
 
         private string SelectedFile;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-            printerService = new PrinterService();
         }
 
         private void btnUsbSource_Click(object sender, EventArgs e)
         {
             selectedFileSource = FileSource.Usb;
 
-            List<DriveInfo> drives = FileService.GetAvailableDrives();
+            List<ExternalDriveInfo> drives = FileService.GetAvailableDrives();
 
             cbExternalDrive.Items.Clear();
-            foreach (DriveInfo drive in drives)
+            foreach (ExternalDriveInfo drive in drives)
             {
                 cbExternalDrive.Items.Add(drive);
             }
@@ -50,17 +46,23 @@ namespace PrintKiosk
         private void btnBluetoothSource_Click(object sender, EventArgs e)
         {
             selectedFileSource = FileSource.Bluetooth;
+
+            Process fSquirtProcess = new Process();
+            fSquirtProcess.StartInfo.FileName = "fsquirt.exe";
+            fSquirtProcess.StartInfo.Arguments = "-receive";
+            fSquirtProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+            fSquirtProcess.Start();
         }
 
         private void cbExternalDrive_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DriveInfo selectedDrive = (DriveInfo)cbExternalDrive.Items[cbExternalDrive.SelectedIndex];
+            ExternalDriveInfo selectedDrive = (ExternalDriveInfo)cbExternalDrive.Items[cbExternalDrive.SelectedIndex];
 
 
             List<String> files;
             try
             {
-                files = FileService.ListPrintableFiles(selectedDrive.RootDirectory.FullName);
+                files = FileService.ListPrintableFiles(selectedDrive.driveInfo.RootDirectory.FullName);
             } catch (Exception)
             { 
                 files = new List<String>();
@@ -96,8 +98,11 @@ namespace PrintKiosk
             if (lvPrintableFiles.SelectedItems.Count >= 1)
             {
                 string path = lvPrintableFiles.SelectedItems[0].Text;
-                pdfViewer.Document = PdfDocument.Load(path);
                 SelectedFile = path;
+                btnPrint.Enabled = true;
+            } else
+            {
+                btnPrint.Enabled = false;
             }
         }
 
@@ -123,7 +128,13 @@ namespace PrintKiosk
         {
             if (SelectedFile != null)
             {
-                printerService.PrintPdf(SelectedFile, NumberOfCopies);
+                PrintPreviewForm printPreviewForm = new PrintPreviewForm(SelectedFile);
+                DialogResult dialogResult = printPreviewForm.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
+                }
             }
         }
     }
