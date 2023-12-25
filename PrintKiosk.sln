@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintKiosk", "PrintKiosk\PrintKiosk.csproj", "{20265C03-8A78-41D3-9CF6-C06EA759DAB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug (32-bit)|Any CPU = Debug (32-bit)|Any CPU
+		Debug (32-bit)|x86 = Debug (32-bit)|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug (32-bit)|Any CPU.ActiveCfg = 32-bit Debug|Any CPU
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug (32-bit)|Any CPU.Build.0 = 32-bit Debug|Any CPU
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug (32-bit)|x86.ActiveCfg = 32-bit Debug|x86
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug (32-bit)|x86.Build.0 = 32-bit Debug|x86
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug|x86.ActiveCfg = Debug|x86
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Debug|x86.Build.0 = Debug|x86
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Release|x86.ActiveCfg = Release|x86
+		{20265C03-8A78-41D3-9CF6-C06EA759DAB8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A519707-5619-417E-A1E3-C80DAC0576A2}
+	EndGlobalSection
+EndGlobal
