@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+﻿using MetroFramework;
+using MetroFramework.Controls;
 using PdfiumViewer;
 using PrintKiosk.Core;
 using PrintKiosk.Core.Enums;
@@ -10,6 +11,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,14 +27,60 @@ namespace PrintKiosk
 
         private string SelectedFile;
 
+        private int NumberOfCredits = 0;
+
+        private readonly SerialPort SerialPort;
+
+        private readonly static string ComPort = "COM8";
+
         public MainForm()
         {
             InitializeComponent();
+            SerialPort = new SerialPort(ComPort, 115200);
+            SerialPort.Open();
+
+            SerialPort.DataReceived += SerialPort_DataReceived;
+            SerialPort.ErrorReceived += SerialPort_ErrorReceived;
+        }
+
+        private delegate void SetCreditsDelegate(int credits);
+
+
+        private delegate void ShowErrorMessage(string message);
+
+        private void SetCredits(int credits)
+        {
+            NumberOfCredits = credits;
+            lblCredits.Text = $"You have {NumberOfCredits} credits.";
+            panelMain.Enabled = NumberOfCredits >= 5;
+        }
+
+        private void SerialPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
+        {
+            MetroMessageBox.Show(this, "An error occurred communicating with microcontroller. Restarting application.", "Error", MessageBoxButtons.OK);   
+        }
+
+        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string data = SerialPort.ReadLine();
+
+            try
+            {
+                int credits = int.Parse(data);
+                this.BeginInvoke(new SetCreditsDelegate(SetCredits), new object[] { credits });
+            }
+            catch (Exception) { }
         }
 
         private void btnUsbSource_Click(object sender, EventArgs e)
         {
             selectedFileSource = FileSource.Usb;
+
+            SelectedFile = null;
+            btnPrint.Enabled = false;
+
+            NumberOfCopies = 1;
+            UpdateNumberOfCopies();
 
             panelUsbBrowser.Visible = true;
             panelBluetooth.Visible = false;
@@ -49,6 +97,12 @@ namespace PrintKiosk
         private void btnBluetoothSource_Click(object sender, EventArgs e)
         {
             selectedFileSource = FileSource.Bluetooth;
+
+            SelectedFile = null;
+            btnPrint.Enabled = false;
+
+            NumberOfCopies = 1;
+            UpdateNumberOfCopies();
 
             panelUsbBrowser.Visible = false;
             panelBluetooth.Visible = true;
@@ -82,8 +136,7 @@ namespace PrintKiosk
             {
                 lblNoPrintableFile.Visible = false;
 
-
-                foreach (String file in files)
+                foreach (string file in files)
                 {
                     lvPrintableFiles.Items.Add(new ListViewItem(file));
                 }
@@ -128,12 +181,23 @@ namespace PrintKiosk
         {
             if (SelectedFile != null)
             {
-                PrintPreviewForm printPreviewForm = new PrintPreviewForm(SelectedFile);
+                PdfDocument document = PdfDocument.Load(SelectedFile);
+                int creditsToConsume = NumberOfCopies * document.PageCount * 5;
+
+                if (NumberOfCredits < creditsToConsume)
+                {
+                    MetroMessageBox.Show(this, $"You need {creditsToConsume} to print this document. Insert coins in coin slot to increase credits.", "Insufficient credits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                 
+                PrintPreviewForm printPreviewForm = new PrintPreviewForm(document, NumberOfCopies);
                 DialogResult dialogResult = printPreviewForm.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
                 {
                     PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
+                    NumberOfCopies -= creditsToConsume;
+                    SetCredits(NumberOfCopies - creditsToConsume);
                 }
             }
         }
@@ -141,6 +205,7 @@ namespace PrintKiosk
         private void MainForm_Load(object sender, EventArgs e)
         {
             lblDropboxHelp.Text = $"Click the button below to start receiving files. Make sure to save files in this directory: {BluetoothService.BluetoothDropboxPath}";
+            SetCredits(0);
             btnUsbSource_Click(this, null);
         }
 

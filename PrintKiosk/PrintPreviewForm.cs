@@ -14,21 +14,20 @@ namespace PrintKiosk
 {
     public partial class PrintPreviewForm : MetroForm
     {
-        private readonly string PathToPrint;
         private readonly PdfDocument Document;
+        private readonly int NumberOfCopies;
 
-
-        public PrintPreviewForm(string pathToPrint)
+        public PrintPreviewForm(PdfDocument document, int numberOfCopies)
         {
             InitializeComponent();
-            PathToPrint = pathToPrint;
-            Document = PdfDocument.Load(pathToPrint);
+            Document = document;
+            NumberOfCopies = numberOfCopies;
         }
 
         private void PrintPreviewForm_Load(object sender, EventArgs e)
         {
             pdfViewer.Document = Document;
-            this.Text = $"Print Preview ({Document.PageCount} pages, {Document.PageCount * 5} credits)";
+            this.Text = $"Print Preview ({Document.PageCount} pages, {Document.PageCount * NumberOfCopies * 5} credits)";
         }
     }
 }
