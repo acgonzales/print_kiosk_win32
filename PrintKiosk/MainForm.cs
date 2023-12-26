@@ -210,7 +210,7 @@ namespace PrintKiosk
                 if (dialogResult == DialogResult.OK)
                 {
                     PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
-                    SetCredits(NumberOfCopies - creditsToConsume);
+                    SetCredits(NumberOfCredits - creditsToConsume);
                 }
             }
         }
