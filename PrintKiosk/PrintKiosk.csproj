@@ -122,6 +122,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\BluetoothService.cs" />
     <Compile Include="Core\Enums\FileSourceEnum.cs" />
     <Compile Include="Core\ExternalDriveInfo.cs" />
     <Compile Include="Core\FileService.cs" />

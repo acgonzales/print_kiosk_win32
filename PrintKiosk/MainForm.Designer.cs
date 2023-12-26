@@ -53,6 +53,17 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.lblCredits = new MetroFramework.Controls.MetroLabel();
+            this.panelBluetooth = new MetroFramework.Controls.MetroPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lvBluetoothDropboxFiles = new MetroFramework.Controls.MetroListView();
+            this.btnRefresh = new MetroFramework.Controls.MetroButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblDropboxHelp = new MetroFramework.Controls.MetroLabel();
+            this.btnReceiveFiles = new MetroFramework.Controls.MetroButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.btnOpenPairingWizard = new MetroFramework.Controls.MetroButton();
+            this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1.SuspendLayout();
             this.metroPanel6.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -60,13 +71,18 @@
             this.panelFileSelection.SuspendLayout();
             this.metroPanel4.SuspendLayout();
             this.metroPanel2.SuspendLayout();
+            this.panelBluetooth.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
+            this.metroPanel1.Controls.Add(this.panelBluetooth);
+            this.metroPanel1.Controls.Add(this.panelUsbBrowser);
             this.metroPanel1.Controls.Add(this.btnPrint);
             this.metroPanel1.Controls.Add(this.metroPanel6);
-            this.metroPanel1.Controls.Add(this.panelUsbBrowser);
             this.metroPanel1.Controls.Add(this.metroPanel4);
             this.metroPanel1.Controls.Add(this.metroPanel2);
             this.metroPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -198,7 +214,7 @@
             this.panelUsbBrowser.HorizontalScrollbarBarColor = true;
             this.panelUsbBrowser.HorizontalScrollbarHighlightOnWheel = false;
             this.panelUsbBrowser.HorizontalScrollbarSize = 10;
-            this.panelUsbBrowser.Location = new System.Drawing.Point(7, 256);
+            this.panelUsbBrowser.Location = new System.Drawing.Point(7, 247);
             this.panelUsbBrowser.Name = "panelUsbBrowser";
             this.panelUsbBrowser.Size = new System.Drawing.Size(898, 304);
             this.panelUsbBrowser.TabIndex = 11;
@@ -391,6 +407,136 @@
             this.lblCredits.TabIndex = 4;
             this.lblCredits.Text = "You have 10 credits";
             // 
+            // panelBluetooth
+            // 
+            this.panelBluetooth.AutoSize = true;
+            this.panelBluetooth.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelBluetooth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBluetooth.Controls.Add(this.groupBox3);
+            this.panelBluetooth.Controls.Add(this.groupBox2);
+            this.panelBluetooth.Controls.Add(this.groupBox1);
+            this.panelBluetooth.Controls.Add(this.metroLabel12);
+            this.panelBluetooth.HorizontalScrollbarBarColor = true;
+            this.panelBluetooth.HorizontalScrollbarHighlightOnWheel = false;
+            this.panelBluetooth.HorizontalScrollbarSize = 10;
+            this.panelBluetooth.Location = new System.Drawing.Point(7, 248);
+            this.panelBluetooth.Name = "panelBluetooth";
+            this.panelBluetooth.Size = new System.Drawing.Size(902, 302);
+            this.panelBluetooth.TabIndex = 15;
+            this.panelBluetooth.VerticalScrollbarBarColor = true;
+            this.panelBluetooth.VerticalScrollbarHighlightOnWheel = false;
+            this.panelBluetooth.VerticalScrollbarSize = 10;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lvBluetoothDropboxFiles);
+            this.groupBox3.Controls.Add(this.btnRefresh);
+            this.groupBox3.Location = new System.Drawing.Point(596, 50);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(301, 247);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "3. Select the file to be printed";
+            // 
+            // lvBluetoothDropboxFiles
+            // 
+            this.lvBluetoothDropboxFiles.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lvBluetoothDropboxFiles.FullRowSelect = true;
+            this.lvBluetoothDropboxFiles.GridLines = true;
+            this.lvBluetoothDropboxFiles.Location = new System.Drawing.Point(6, 17);
+            this.lvBluetoothDropboxFiles.Name = "lvBluetoothDropboxFiles";
+            this.lvBluetoothDropboxFiles.OwnerDraw = true;
+            this.lvBluetoothDropboxFiles.Size = new System.Drawing.Size(289, 179);
+            this.lvBluetoothDropboxFiles.TabIndex = 16;
+            this.lvBluetoothDropboxFiles.UseCompatibleStateImageBehavior = false;
+            this.lvBluetoothDropboxFiles.UseSelectable = true;
+            this.lvBluetoothDropboxFiles.View = System.Windows.Forms.View.List;
+            this.lvBluetoothDropboxFiles.SelectedIndexChanged += new System.EventHandler(this.lvBluetoothDropboxFiles_SelectedIndexChanged);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(6, 199);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(289, 42);
+            this.btnRefresh.TabIndex = 15;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseSelectable = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblDropboxHelp);
+            this.groupBox2.Controls.Add(this.btnReceiveFiles);
+            this.groupBox2.Location = new System.Drawing.Point(271, 49);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(319, 247);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "2. Receive Files via Bluetooth";
+            // 
+            // lblDropboxHelp
+            // 
+            this.lblDropboxHelp.Location = new System.Drawing.Point(6, 16);
+            this.lblDropboxHelp.Name = "lblDropboxHelp";
+            this.lblDropboxHelp.Size = new System.Drawing.Size(307, 180);
+            this.lblDropboxHelp.TabIndex = 17;
+            this.lblDropboxHelp.Text = "Click the button below to start receiving files.";
+            this.lblDropboxHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDropboxHelp.WrapToLine = true;
+            // 
+            // btnReceiveFiles
+            // 
+            this.btnReceiveFiles.Location = new System.Drawing.Point(6, 199);
+            this.btnReceiveFiles.Name = "btnReceiveFiles";
+            this.btnReceiveFiles.Size = new System.Drawing.Size(307, 42);
+            this.btnReceiveFiles.TabIndex = 15;
+            this.btnReceiveFiles.Text = "Receive Files";
+            this.btnReceiveFiles.UseSelectable = true;
+            this.btnReceiveFiles.Click += new System.EventHandler(this.btnReceiveFiles_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.metroLabel1);
+            this.groupBox1.Controls.Add(this.btnOpenPairingWizard);
+            this.groupBox1.Location = new System.Drawing.Point(11, 49);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(252, 247);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "1. Pair Device";
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.Location = new System.Drawing.Point(6, 16);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(240, 180);
+            this.metroLabel1.TabIndex = 16;
+            this.metroLabel1.Text = "Pair your Bluetooth enabled device by clicking the button below. Make sure to acc" +
+    "ept pairing on both devices.";
+            this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroLabel1.WrapToLine = true;
+            // 
+            // btnOpenPairingWizard
+            // 
+            this.btnOpenPairingWizard.Location = new System.Drawing.Point(6, 199);
+            this.btnOpenPairingWizard.Name = "btnOpenPairingWizard";
+            this.btnOpenPairingWizard.Size = new System.Drawing.Size(240, 42);
+            this.btnOpenPairingWizard.TabIndex = 15;
+            this.btnOpenPairingWizard.Text = "Open Pairing Wizard";
+            this.btnOpenPairingWizard.UseSelectable = true;
+            this.btnOpenPairingWizard.Click += new System.EventHandler(this.btnOpenPairingWizard_Click);
+            // 
+            // metroLabel12
+            // 
+            this.metroLabel12.AutoSize = true;
+            this.metroLabel12.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel12.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel12.Location = new System.Drawing.Point(5, 9);
+            this.metroLabel12.Name = "metroLabel12";
+            this.metroLabel12.Size = new System.Drawing.Size(97, 25);
+            this.metroLabel12.TabIndex = 6;
+            this.metroLabel12.Text = "Bluetooth";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +549,7 @@
             this.Resizable = false;
             this.Text = "Self-Service Printer Kiosk";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
             this.metroPanel6.ResumeLayout(false);
@@ -416,6 +563,11 @@
             this.metroPanel4.PerformLayout();
             this.metroPanel2.ResumeLayout(false);
             this.metroPanel2.PerformLayout();
+            this.panelBluetooth.ResumeLayout(false);
+            this.panelBluetooth.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -447,6 +599,17 @@
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private MetroFramework.Controls.MetroButton btnPrint;
         private MetroFramework.Controls.MetroTile btnUsbSource;
+        private MetroFramework.Controls.MetroPanel panelBluetooth;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private MetroFramework.Controls.MetroListView lvBluetoothDropboxFiles;
+        private MetroFramework.Controls.MetroButton btnRefresh;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private MetroFramework.Controls.MetroLabel lblDropboxHelp;
+        private MetroFramework.Controls.MetroButton btnReceiveFiles;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroButton btnOpenPairingWizard;
+        private MetroFramework.Controls.MetroLabel metroLabel12;
     }
 }
 

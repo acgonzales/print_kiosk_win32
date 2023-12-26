@@ -34,6 +34,9 @@ namespace PrintKiosk
         {
             selectedFileSource = FileSource.Usb;
 
+            panelUsbBrowser.Visible = true;
+            panelBluetooth.Visible = false;
+
             List<ExternalDriveInfo> drives = FileService.GetAvailableDrives();
 
             cbExternalDrive.Items.Clear();
@@ -47,11 +50,8 @@ namespace PrintKiosk
         {
             selectedFileSource = FileSource.Bluetooth;
 
-            Process fSquirtProcess = new Process();
-            fSquirtProcess.StartInfo.FileName = "fsquirt.exe";
-            fSquirtProcess.StartInfo.Arguments = "-receive";
-            fSquirtProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
-            fSquirtProcess.Start();
+            panelUsbBrowser.Visible = false;
+            panelBluetooth.Visible = true;
         }
 
         private void cbExternalDrive_SelectedIndexChanged(object sender, EventArgs e)
@@ -135,6 +135,55 @@ namespace PrintKiosk
                 {
                     PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
                 }
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            lblDropboxHelp.Text = $"Click the button below to start receiving files. Make sure to save files in this directory: {BluetoothService.BluetoothDropboxPath}";
+            btnUsbSource_Click(this, null);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            List<String> files;
+            try
+            {
+                files = FileService.ListPrintableFiles(BluetoothService.BluetoothDropboxPath);
+            }
+            catch (Exception)
+            {
+                files = new List<String>();
+            }
+
+            lvBluetoothDropboxFiles.Items.Clear();
+            foreach (String file in files)
+            {
+                lvBluetoothDropboxFiles.Items.Add(new ListViewItem(file));
+            }
+        }
+
+        private void btnOpenPairingWizard_Click(object sender, EventArgs e)
+        {
+            BluetoothService.OpenPairingWizard();
+        }
+
+        private void btnReceiveFiles_Click(object sender, EventArgs e)
+        {
+            BluetoothService.OpenReceiveFileWizard();
+        }
+
+        private void lvBluetoothDropboxFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvBluetoothDropboxFiles.SelectedItems.Count >= 1)
+            {
+                string path = lvBluetoothDropboxFiles.SelectedItems[0].Text;
+                SelectedFile = path;
+                btnPrint.Enabled = true;
+            }
+            else
+            {
+                btnPrint.Enabled = false;
             }
         }
     }

@@ -9,7 +9,6 @@ namespace PrintKiosk.Core
 {
     internal class FileService
     {
-        private static string[] HiddenDrives = new string[] { "C:" };
         private static string[] AcceptedExtensions = new string[] { ".pdf" };
 
         public static List<ExternalDriveInfo> GetAvailableDrives()
