@@ -46,7 +46,7 @@ namespace PrintKiosk
         private delegate void SetCreditsDelegate(int credits);
 
 
-        private delegate void ShowErrorMessage(string message);
+        private delegate void ShowErrorMessageDelegate(string message);
 
         private void SetCredits(int credits)
         {
@@ -55,21 +55,30 @@ namespace PrintKiosk
             panelMain.Enabled = NumberOfCredits >= 5;
         }
 
+        private void ShowErrorMessage(string message)
+        {
+            // MetroMessageBox.Show(this, "An error occurred communicating with microcontroller. Restarting application.", "Error", MessageBoxButtons.OK);
+            MetroMessageBox.Show(this, message, "Error", MessageBoxButtons.OK);
+        }
+
         private void SerialPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            MetroMessageBox.Show(this, "An error occurred communicating with microcontroller. Restarting application.", "Error", MessageBoxButtons.OK);   
+            this.BeginInvoke(new  ShowErrorMessageDelegate(ShowErrorMessage), new object[] { "abc" });
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = SerialPort.ReadLine();
 
+            this.BeginInvoke(new ShowErrorMessageDelegate(ShowErrorMessage), new object[] { data });
+
             try
             {
                 int credits = int.Parse(data);
                 this.BeginInvoke(new SetCreditsDelegate(SetCredits), new object[] { credits });
             }
-            catch (Exception) { }
+            catch (Exception) {
+            }
         }
 
         private void btnUsbSource_Click(object sender, EventArgs e)
