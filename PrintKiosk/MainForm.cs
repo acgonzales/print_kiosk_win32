@@ -211,6 +211,7 @@ namespace PrintKiosk
                 {
                     PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
                     SetCredits(NumberOfCredits - creditsToConsume);
+                    SerialPort.WriteLine(NumberOfCredits.ToString());
                 }
             }
         }
