@@ -70,11 +70,16 @@ namespace PrintKiosk
         {
             string data = SerialPort.ReadLine();
 
+            if (!data.StartsWith("CX:"))
+            {
+                return;
+            }
+
             //this.BeginInvoke(new ShowErrorMessageDelegate(ShowErrorMessage), new object[] { data });
 
             try
             {
-                int credits = int.Parse(data.Replace(" ", "").Trim());
+                int credits = int.Parse(data.Replace(" ", "").Replace("CX:", "").Trim());
                 this.BeginInvoke(new SetCreditsDelegate(SetCredits), new object[] { credits });
             }
             catch (Exception) {
