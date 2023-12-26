@@ -70,11 +70,11 @@ namespace PrintKiosk
         {
             string data = SerialPort.ReadLine();
 
-            this.BeginInvoke(new ShowErrorMessageDelegate(ShowErrorMessage), new object[] { data });
+            //this.BeginInvoke(new ShowErrorMessageDelegate(ShowErrorMessage), new object[] { data });
 
             try
             {
-                int credits = int.Parse(data.Replace(" ", ""));
+                int credits = int.Parse(data.Replace(" ", "").Trim());
                 this.BeginInvoke(new SetCreditsDelegate(SetCredits), new object[] { credits });
             }
             catch (Exception) {
