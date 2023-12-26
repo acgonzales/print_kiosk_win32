@@ -74,7 +74,7 @@ namespace PrintKiosk
 
             try
             {
-                int credits = int.Parse(data);
+                int credits = int.Parse(data.Replace(" ", ""));
                 this.BeginInvoke(new SetCreditsDelegate(SetCredits), new object[] { credits });
             }
             catch (Exception) {
