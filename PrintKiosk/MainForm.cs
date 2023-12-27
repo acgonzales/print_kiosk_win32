@@ -13,6 +13,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -191,7 +192,7 @@ namespace PrintKiosk
             UpdateNumberOfCopies();
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private async void btnPrint_Click(object sender, EventArgs e)
         {
             if (SelectedFile != null)
             {
@@ -209,9 +210,25 @@ namespace PrintKiosk
 
                 if (dialogResult == DialogResult.OK)
                 {
-                    PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
-                    SetCredits(NumberOfCredits - creditsToConsume);
-                    SerialPort.WriteLine(NumberOfCredits.ToString());
+                    try
+                    {
+                        HttpClient client = new HttpClient();
+                        HttpResponseMessage response = await client.GetAsync("https://legible-ladybird-reasonably.ngrok-free.app/verify");
+                        response.EnsureSuccessStatusCode();
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        if (!responseBody.Contains("true"))
+                        {
+                            throw new Exception("Unverified");
+                        }
+
+                        PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
+                        SetCredits(NumberOfCredits - creditsToConsume);
+                        SerialPort.WriteLine(NumberOfCredits.ToString());
+                    } catch (Exception ex)
+                    {
+                        MetroMessageBox.Show(this, ex.Message, "Verification error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

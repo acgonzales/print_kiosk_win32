@@ -547,7 +547,7 @@
             this.Movable = false;
             this.Name = "MainForm";
             this.Resizable = false;
-            this.Text = "Self-Service Printer Kiosk";
+            this.Text = "Microcontrolled-Based Multi-functional Printer Vending Machine";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelMain.ResumeLayout(false);
