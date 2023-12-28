@@ -9,7 +9,7 @@ namespace PrintKiosk.Core
 {
     internal class FileService
     {
-        private static string[] AcceptedExtensions = new string[] { ".pdf" };
+        private static string[] AcceptedExtensions = new string[] { ".pdf", ".docx" };
 
         public static List<ExternalDriveInfo> GetAvailableDrives()
         {
@@ -21,7 +21,7 @@ namespace PrintKiosk.Core
 
         public static List<string> ListPrintableFiles(string path)
         {
-            return Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories).Where(f => AcceptedExtensions.Any(ext => ext == Path.GetExtension(f))).ToList();
+            return Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories).Where(f => AcceptedExtensions.Any(ext => ext.Equals(Path.GetExtension(f), StringComparison.OrdinalIgnoreCase) )).ToList();
         }
 
         public static string SupportedFilesString()

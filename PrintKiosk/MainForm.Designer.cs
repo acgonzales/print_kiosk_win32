@@ -110,7 +110,7 @@
             this.panelBluetooth.HorizontalScrollbarBarColor = true;
             this.panelBluetooth.HorizontalScrollbarHighlightOnWheel = false;
             this.panelBluetooth.HorizontalScrollbarSize = 10;
-            this.panelBluetooth.Location = new System.Drawing.Point(7, 248);
+            this.panelBluetooth.Location = new System.Drawing.Point(7, 247);
             this.panelBluetooth.Name = "panelBluetooth";
             this.panelBluetooth.Size = new System.Drawing.Size(902, 302);
             this.panelBluetooth.TabIndex = 15;
@@ -122,6 +122,7 @@
             // 
             this.groupBox3.Controls.Add(this.lvBluetoothDropboxFiles);
             this.groupBox3.Controls.Add(this.btnRefresh);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(596, 50);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(301, 247);
@@ -134,10 +135,10 @@
             this.lvBluetoothDropboxFiles.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lvBluetoothDropboxFiles.FullRowSelect = true;
             this.lvBluetoothDropboxFiles.GridLines = true;
-            this.lvBluetoothDropboxFiles.Location = new System.Drawing.Point(6, 17);
+            this.lvBluetoothDropboxFiles.Location = new System.Drawing.Point(6, 25);
             this.lvBluetoothDropboxFiles.Name = "lvBluetoothDropboxFiles";
             this.lvBluetoothDropboxFiles.OwnerDraw = true;
-            this.lvBluetoothDropboxFiles.Size = new System.Drawing.Size(289, 179);
+            this.lvBluetoothDropboxFiles.Size = new System.Drawing.Size(289, 171);
             this.lvBluetoothDropboxFiles.TabIndex = 16;
             this.lvBluetoothDropboxFiles.UseCompatibleStateImageBehavior = false;
             this.lvBluetoothDropboxFiles.UseSelectable = true;
@@ -158,6 +159,7 @@
             // 
             this.groupBox2.Controls.Add(this.lblDropboxHelp);
             this.groupBox2.Controls.Add(this.btnReceiveFiles);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(271, 49);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(319, 247);
@@ -167,9 +169,9 @@
             // 
             // lblDropboxHelp
             // 
-            this.lblDropboxHelp.Location = new System.Drawing.Point(6, 16);
+            this.lblDropboxHelp.Location = new System.Drawing.Point(6, 26);
             this.lblDropboxHelp.Name = "lblDropboxHelp";
-            this.lblDropboxHelp.Size = new System.Drawing.Size(307, 180);
+            this.lblDropboxHelp.Size = new System.Drawing.Size(307, 170);
             this.lblDropboxHelp.TabIndex = 17;
             this.lblDropboxHelp.Text = "Click the button below to start receiving files.";
             this.lblDropboxHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -189,6 +191,7 @@
             // 
             this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Controls.Add(this.btnOpenPairingWizard);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(11, 49);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(252, 247);
@@ -198,9 +201,10 @@
             // 
             // metroLabel1
             // 
-            this.metroLabel1.Location = new System.Drawing.Point(6, 16);
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.Location = new System.Drawing.Point(6, 26);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(240, 180);
+            this.metroLabel1.Size = new System.Drawing.Size(240, 170);
             this.metroLabel1.TabIndex = 16;
             this.metroLabel1.Text = "Pair your Bluetooth enabled device by clicking the button below. Make sure to acc" +
     "ept pairing on both devices.";
@@ -284,9 +288,10 @@
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(0, 9);
+            this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel7.Location = new System.Drawing.Point(0, 4);
             this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(114, 19);
+            this.metroLabel7.Size = new System.Drawing.Size(147, 25);
             this.metroLabel7.TabIndex = 14;
             this.metroLabel7.Text = "Select file to print:";
             // 
@@ -304,19 +309,22 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
+            this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel6.Location = new System.Drawing.Point(10, 45);
             this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(90, 19);
+            this.metroLabel6.Size = new System.Drawing.Size(117, 25);
             this.metroLabel6.TabIndex = 12;
             this.metroLabel6.Text = "Choose Drive:";
             // 
             // cbExternalDrive
             // 
+            this.cbExternalDrive.FontSize = MetroFramework.MetroComboBoxSize.Tall;
+            this.cbExternalDrive.FontWeight = MetroFramework.MetroComboBoxWeight.Bold;
             this.cbExternalDrive.FormattingEnabled = true;
-            this.cbExternalDrive.ItemHeight = 23;
-            this.cbExternalDrive.Location = new System.Drawing.Point(105, 41);
+            this.cbExternalDrive.ItemHeight = 29;
+            this.cbExternalDrive.Location = new System.Drawing.Point(130, 44);
             this.cbExternalDrive.Name = "cbExternalDrive";
-            this.cbExternalDrive.Size = new System.Drawing.Size(232, 29);
+            this.cbExternalDrive.Size = new System.Drawing.Size(232, 35);
             this.cbExternalDrive.TabIndex = 11;
             this.cbExternalDrive.UseSelectable = true;
             this.cbExternalDrive.SelectedIndexChanged += new System.EventHandler(this.cbExternalDrive_SelectedIndexChanged);
@@ -334,7 +342,10 @@
             // 
             // btnPrint
             // 
+            this.btnPrint.DisplayFocus = true;
             this.btnPrint.Enabled = false;
+            this.btnPrint.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnPrint.Highlight = true;
             this.btnPrint.Location = new System.Drawing.Point(598, 101);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(307, 140);
@@ -366,9 +377,10 @@
             // metroLabel9
             // 
             this.metroLabel9.AutoSize = true;
-            this.metroLabel9.Location = new System.Drawing.Point(11, 47);
+            this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel9.Location = new System.Drawing.Point(11, 40);
             this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(118, 19);
+            this.metroLabel9.Size = new System.Drawing.Size(152, 25);
             this.metroLabel9.TabIndex = 11;
             this.metroLabel9.Text = "Number of copies:";
             // 
@@ -475,6 +487,7 @@
             this.btnBluetoothSource.Style = MetroFramework.MetroColorStyle.Blue;
             this.btnBluetoothSource.TabIndex = 3;
             this.btnBluetoothSource.Text = "Bluetooth";
+            this.btnBluetoothSource.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.btnBluetoothSource.UseSelectable = true;
             this.btnBluetoothSource.Click += new System.EventHandler(this.btnBluetoothSource_Click);
             // 
@@ -486,7 +499,8 @@
             this.btnUsbSource.Size = new System.Drawing.Size(160, 87);
             this.btnUsbSource.Style = MetroFramework.MetroColorStyle.Purple;
             this.btnUsbSource.TabIndex = 2;
-            this.btnUsbSource.Text = "External storage (USB)";
+            this.btnUsbSource.Text = "USB";
+            this.btnUsbSource.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.btnUsbSource.UseSelectable = true;
             this.btnUsbSource.Click += new System.EventHandler(this.btnUsbSource_Click);
             // 
@@ -502,7 +516,7 @@
             this.metroPanel2.HorizontalScrollbarSize = 10;
             this.metroPanel2.Location = new System.Drawing.Point(7, 14);
             this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(318, 73);
+            this.metroPanel2.Size = new System.Drawing.Size(411, 79);
             this.metroPanel2.TabIndex = 7;
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
@@ -511,18 +525,20 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
+            this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel3.Location = new System.Drawing.Point(4, 30);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(164, 19);
+            this.metroLabel3.Size = new System.Drawing.Size(212, 25);
             this.metroLabel3.TabIndex = 5;
             this.metroLabel3.Text = "Price is 5 credits per sheet.";
             // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
+            this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel2.Location = new System.Drawing.Point(4, 54);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(311, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(404, 25);
             this.metroLabel2.TabIndex = 6;
             this.metroLabel2.Text = "You may insert a coin in the coin slot to add credits.";
             // 

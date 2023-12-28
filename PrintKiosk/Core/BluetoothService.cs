@@ -9,7 +9,7 @@ namespace PrintKiosk.Core
 {
     internal class BluetoothService
     {
-        public static string BluetoothDropboxPath = @"C:\Users\iChico\Documents\BluetoothDropbox";
+        public static string BluetoothDropboxPath = @"C:\Users\Chazz\Documents\BluetoothDropbox";
 
         public static void OpenReceiveFileWizard()
         {

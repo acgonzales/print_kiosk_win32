@@ -1,21 +1,10 @@
 ﻿using MetroFramework;
-using MetroFramework.Controls;
 using PdfiumViewer;
 using PrintKiosk.Core;
 using PrintKiosk.Core.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PrintKiosk
@@ -47,7 +36,7 @@ namespace PrintKiosk
         private delegate void SetCreditsDelegate(int credits);
 
 
-        private delegate void ShowErrorMessageDelegate(string message);
+        private delegate void ShowErrorMessageDelegate();
 
         private void SetCredits(int credits)
         {
@@ -56,15 +45,15 @@ namespace PrintKiosk
             panelMain.Enabled = NumberOfCredits >= 5;
         }
 
-        private void ShowErrorMessage(string message)
+        private void ShowErrorMessage()
         {
-            // MetroMessageBox.Show(this, "An error occurred communicating with microcontroller. Restarting application.", "Error", MessageBoxButtons.OK);
-            MetroMessageBox.Show(this, message, "Error", MessageBoxButtons.OK);
+            MetroMessageBox.Show(this, "An error occurred communicating with microcontroller. Restarting application.", "Error", MessageBoxButtons.OK);
+            // MetroMessageBox.Show(this, message, "Error", MessageBoxButtons.OK);
         }
 
         private void SerialPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            this.BeginInvoke(new  ShowErrorMessageDelegate(ShowErrorMessage), new object[] { "abc" });
+            this.BeginInvoke(new ShowErrorMessageDelegate(ShowErrorMessage), new object[] { });
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -75,8 +64,6 @@ namespace PrintKiosk
             {
                 return;
             }
-
-            //this.BeginInvoke(new ShowErrorMessageDelegate(ShowErrorMessage), new object[] { data });
 
             try
             {
@@ -192,11 +179,11 @@ namespace PrintKiosk
             UpdateNumberOfCopies();
         }
 
-        private async void btnPrint_Click(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
             if (SelectedFile != null)
             {
-                PdfDocument document = PdfDocument.Load(SelectedFile);
+                PdfDocument document = PrinterService.ConvertToPdfDocument(SelectedFile);
                 int creditsToConsume = NumberOfCopies * document.PageCount * 5;
 
                 if (NumberOfCredits < creditsToConsume)
@@ -210,25 +197,9 @@ namespace PrintKiosk
 
                 if (dialogResult == DialogResult.OK)
                 {
-                    try
-                    {
-                        HttpClient client = new HttpClient();
-                        HttpResponseMessage response = await client.GetAsync("https://legible-ladybird-reasonably.ngrok-free.app/verify");
-                        response.EnsureSuccessStatusCode();
-                        string responseBody = await response.Content.ReadAsStringAsync();
-
-                        if (!responseBody.Contains("true"))
-                        {
-                            throw new Exception("Unverified");
-                        }
-
-                        PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
-                        SetCredits(NumberOfCredits - creditsToConsume);
-                        SerialPort.WriteLine(NumberOfCredits.ToString());
-                    } catch (Exception ex)
-                    {
-                        MetroMessageBox.Show(this, ex.Message, "Verification error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    PrinterService.PrintPdf(SelectedFile, NumberOfCopies);
+                    SetCredits(NumberOfCredits - creditsToConsume);
+                    SerialPort.WriteLine(NumberOfCredits.ToString());
                 }
             }
         }
